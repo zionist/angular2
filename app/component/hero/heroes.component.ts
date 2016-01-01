@@ -30,5 +30,6 @@ export class Heroes implements OnInit {
 
     onSelect(hero: HeroInterface) {
         this.selectedHero = hero;
+        //this.selectedHero.submitted = false;
     }
 }
