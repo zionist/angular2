@@ -3,7 +3,12 @@ import {Heroes} from './component/hero/heroes.component';
 
 @Component({
     selector: 'my-app',
-    template: "<heroes></heroes>",
+    template: `
+    <div class="container">
+    <heroes></heroes>
+    </div>
+
+    `,
     directives: [Heroes]
 })
 

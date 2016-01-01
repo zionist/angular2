@@ -1,32 +1,34 @@
 import {Component, OnInit} from 'angular2/core';
-import {Hero} from './hero';
-import {HeroDetailComponent} from './hero-detail.component';
+import {HeroInterface} from './hero';
+import {HeroFormComponent} from './hero-form.component';
 import {HeroService} from '../../service/hero/hero.service';
 
 
 @Component({
     selector: 'heroes',
-    templateUrl: 'app/component/hero/html/app.component.html',
-    styleUrls: ['app/component/hero/html/app.component.css'],
+    templateUrl: 'app/component/hero/html/heroes.component.html',
+    styleUrls: ['app/component/hero/html/heroes.component.css'],
 
-    directives: [HeroDetailComponent],
+    directives: [HeroFormComponent],
     providers: [HeroService]
 })
 
 export class Heroes implements OnInit {
     public title = 'Tour of Heroes';
-    public heroes: Hero[];
-    public selectedHero: Hero;
+    public heroes: HeroInterface[];
+    public selectedHero: HeroInterface;
 
     constructor(private _heroService: HeroService) { }
 
     getHeroes() {
-        this._heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
+        this._heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
 
     ngOnInit() {
         this.getHeroes();
     }
 
-    onSelect(hero: Hero) { this.selectedHero = hero; }
+    onSelect(hero: HeroInterface) {
+        this.selectedHero = hero;
+    }
 }

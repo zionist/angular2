@@ -1,6 +1,6 @@
-import {Hero} from '../../component/hero/hero';
+import {HeroInterface} from '../../component/hero/hero';
 
-export var HEROES: Hero[] = [
+export var HEROES: HeroInterface[] = [
     {"id": 11, "name": "Mr. Nice"},
     {"id": 12, "name": "Narco"},
     {"id": 13, "name": "Bombasto"},
@@ -11,4 +11,11 @@ export var HEROES: Hero[] = [
     {"id": 18, "name": "Dr IQ"},
     {"id": 19, "name": "Magma"},
     {"id": 20, "name": "Tornado"}
+];
+
+export var POWERS: Array<string> = [
+    'Really Smart',
+    'Super Flexible',
+    'Super Hot',
+    'Weather Changer'
 ];

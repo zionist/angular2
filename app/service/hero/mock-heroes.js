@@ -1,5 +1,5 @@
 System.register([], function(exports_1) {
-    var HEROES;
+    var HEROES, POWERS;
     return {
         setters:[],
         execute: function() {
@@ -14,6 +14,12 @@ System.register([], function(exports_1) {
                 { "id": 18, "name": "Dr IQ" },
                 { "id": 19, "name": "Magma" },
                 { "id": 20, "name": "Tornado" }
+            ]);
+            exports_1("POWERS", POWERS = [
+                'Really Smart',
+                'Super Flexible',
+                'Super Hot',
+                'Weather Changer'
             ]);
         }
     }

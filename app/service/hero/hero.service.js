@@ -25,6 +25,9 @@ System.register(['./mock-heroes', 'angular2/core'], function(exports_1) {
                 HeroService.prototype.getHeroes = function () {
                     return Promise.resolve(mock_heroes_1.HEROES);
                 };
+                HeroService.prototype.getHeroePowers = function () {
+                    return Promise.resolve(mock_heroes_1.POWERS);
+                };
                 // See the "Take it slow" appendix
                 HeroService.prototype.getHeroesSlowly = function () {
                     return new Promise(function (resolve) {
