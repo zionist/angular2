@@ -28,6 +28,10 @@ export class Heroes implements OnInit {
         this.getHeroes();
     }
 
+    public onHeroDeleted(event: Array<string>) {
+        //alert(event);
+    }
+
     onSelect(hero: HeroInterface) {
         this.selectedHero = hero;
         //this.selectedHero.submitted = false;

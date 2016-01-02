@@ -1,6 +1,6 @@
 import {Component,Input} from 'angular2/core';
-import {NgForm}    from 'angular2/common';
-import {HeroInterface,Hero} from './hero';
+import {NgForm,Validators,FormBuilder,ControlGroup,AbstractControl,Control}    from 'angular2/common';
+import {HeroInterface} from './hero';
 import {HeroService} from '../../service/hero/hero.service';
 @Component({
     selector: 'hero-form',
@@ -36,14 +36,17 @@ import {HeroService} from '../../service/hero/hero.service';
      <div class="col-md-3">
          <div [class.hidden]="hero.submitted">
             <h1>Hero Form</h1>
-            <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+            <form  [ngFormModel]="heroForm" (ngSubmit)="onSubmit()">
               <div> {{diagnostic}}</div>
               <div class="form-group">
                 <label for="name"></label>
                 <input type="text" class="form-control" required
-                [(ngModel)]="hero.name" ngControl="name" #name="ngForm">
-                  <div [class.hidden]="name.valid" class="alert alert-danger">
+                [(ngModel)]="hero.name" ngControl="name">
+                  <div [class.hidden]="!name.hasError('required')" class="alert alert-danger">
                   Name is required
+                  </div>
+                  <div [class.hidden]="!name.hasError('noMagic')" class="alert alert-danger">
+                  Must not contains "test" word
                   </div>
               </div>
               <div class="form-group">
@@ -56,18 +59,47 @@ import {HeroService} from '../../service/hero/hero.service';
                     <option *ngFor="#p of powers" [value]="p">{{p}}</option>
                   </select>
               </div>
-              <button type="submit" class="btn btn-default" [class.disabled]="!heroForm.form.valid">Submit</button>
+              <button type="submit" class="btn btn-default" [class.disabled]="!heroForm.valid">Submit</button>
             </form>
          <div>
      </div>
 </div>
 `
 })
+
+
 export class HeroFormComponent {
 
-    public powers: Array<string>;
 
-    constructor(private _heroService: HeroService) {
+
+    public powers: Array<string>;
+    public heroForm: ControlGroup;
+    public name: AbstractControl;
+    public power: AbstractControl;
+    public alterEgo: AbstractControl;
+
+    //constructor(private _heroService: HeroService) {
+    //}
+    constructor(private _heroService: HeroService, fb: FormBuilder) {
+
+        function containsMagicWord(c: Control) {
+            if(c.value.indexOf('test') >= 0) {
+                return {
+                    noMagic: true
+                }
+            }
+
+            // Null means valid, believe it or not
+            return null
+        }
+
+        this.heroForm = fb.group({
+            "name": ["",  Validators.compose([Validators.required, containsMagicWord])],
+            "power": ["", Validators.required],
+            "alterEgo": [""],
+        });
+
+        this.name = this.heroForm.controls["name"];
     }
 
     getPowers() {

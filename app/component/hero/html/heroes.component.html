@@ -7,4 +7,4 @@
         <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
 </ul>
-<hero-form [hero]="selectedHero"></hero-form>
+<hero-form [hero]="selectedHero" (deleted)="onHeroDeleted($event)"></hero-form>
