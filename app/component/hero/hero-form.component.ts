@@ -70,8 +70,6 @@ import {HeroService} from '../../service/hero/hero.service';
 
 export class HeroFormComponent {
 
-
-
     public powers: Array<string>;
     public heroForm: ControlGroup;
     public name: AbstractControl;

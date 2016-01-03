@@ -4,29 +4,37 @@
     <!-- css -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-    <title>Angular 2 QuickStart</title>
+    <base href="/">
 
-    <!-- 1. Load libraries -->
-    <script src="node_modules/es6-shim/es6-shim.js"></script>
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <!-- ES6-related imports -->
+    <script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="/node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="/node_modules/systemjs/dist/system.js"></script>
 
-
-    <!-- 2. Configure SystemJS -->
     <script>
+      //configure system loader
+      //System.config({defaultJSExtensions: true});
       System.config({
-        packages: {        
+          packages: {
           app: {
-            format: 'register',
-            defaultExtension: 'js'
+              format: 'register',
+                      defaultExtension: 'js'
+            }
           }
-        }
-      });
-      System.import('app/boot')
-            .then(null, console.error.bind(console));
+    });
+      //System.import('app/boot')
+
     </script>
+
+    <script src="/node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="/node_modules/angular2/bundles/angular2.min.js"></script>
+    <script src="/node_modules/angular2/bundles/router.js"></script>
+
+    <script>
+      //bootstrap the Angular2 application
+     System.import('app/boot').catch(console.log.bind(console));
+    </script>
+
 
   </head>
 
